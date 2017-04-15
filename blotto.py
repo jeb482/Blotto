@@ -3,6 +3,7 @@
 # Basic data structures for the blotto game
 #
 
+# Returns the tuple of (wins, draws, losses) for strategy_a.
 def run_blotto_game(strategy_a, strategy_b):
     num_battlefields = len(strategy_a)
     wins = 0; draws = 0; losses = 0
@@ -15,6 +16,7 @@ def run_blotto_game(strategy_a, strategy_b):
             losses += 1
     return (wins, draws, losses)
     
+
 def get_winner(strategy_a, strategy_b):
     (wins, _, losses) = run_blotto_game(strategy_a, strategy_b)
     if (wins > losses):
@@ -22,3 +24,8 @@ def get_winner(strategy_a, strategy_b):
     elif (losses > wins):
         return strategy_b
     return None
+    
+def best_response_one_day(enemy_strategy, num_soldiers=None)
+    current_soldiers = num_soldiers
+    id (num_soldiers == None):
+        current_soldiers = sum(enemy_strategy)
