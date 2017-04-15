@@ -25,7 +25,20 @@ def get_winner(strategy_a, strategy_b):
         return strategy_b
     return None
     
-def best_response_one_day(enemy_strategy, num_soldiers=None)
+def best_response_one_day(enemy_strategy, num_soldiers=None):
     current_soldiers = num_soldiers
-    id (num_soldiers == None):
+    if (num_soldiers == None):
         current_soldiers = sum(enemy_strategy)
+    sorted_fields = [(field, i) for (i,field) in enumerate(enemy_strategy)]
+    sorted_fields.sort(key=lambda x: x[0])
+    ######
+    #Actual best response
+    best_response = [0] * len(enemy_strategy)
+    for (bf,i) in sorted_fields:
+        if (bf+1 >= current_soldiers):
+            best_response[i] = current_soldiers
+            return best_response
+        best_response[i] = bf + 1;
+        current_soldiers -= (bf+1)
+    ######
+    
