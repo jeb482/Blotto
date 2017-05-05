@@ -42,3 +42,7 @@ def best_response_one_day(enemy_strategy, num_soldiers=None):
         current_soldiers -= (bf+1)
     ######
     
+def best_response_with_discount(player_strategy, enemy_strategy)
+    if (get_winner(player_strategy, enemy_strategy) == player_strategy)
+        return player_strategy
+    return best_response_one_day(enemy_strategy, sum(player_strategy) - 1)
