@@ -14,6 +14,8 @@ def test_best_response_one_day():
     
     if ([0,0,1,0,0] != best_response_one_day([1000,1000,999,1000,1000], 1)):
         print("Failed [big, big, small, big, big] case.")
+    print("Passed")
+    
     else: 
         print("Passed")
         
@@ -34,6 +36,8 @@ def test_levelkResponse():
     print(levelkResponse([1,8,8,2], [1,2,3,10], 0))
     print(levelkResponse([1,8,8,2], [1,2,3,10], 3))
     
+    return True;
+
 def test_enumerate_strategies():
     print("Testing enumeration of 10 soldiers on four battlefields")
     
@@ -49,7 +53,6 @@ def test_enumerate_strategies():
     if (len(enumerate_strategies1(10,4,[],[])) == (13*12*11)/(3*2)):
         print("Right number")
     
-
 
 if __name__ == "__main__":
     test_enumerate_strategies()

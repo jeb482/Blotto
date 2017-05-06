@@ -45,6 +45,14 @@ def best_response_one_day(enemy_strategy, num_soldiers=None):
         current_soldiers -= (bf+1)
     ######
     
+    
+
+def numSoldiers(strategy):
+    n = 0
+    for i in range(0, len(strategy)):
+        n += strategy[i]
+    return n
+
 
 def best_response_with_discount(player_strategy, enemy_strategy):
     if (get_winner(player_strategy, enemy_strategy) == player_strategy):
@@ -81,8 +89,7 @@ def enumerate_strategies(num_soldiers, num_battlefields):
     for strategy in recursiveHelper(num_soldiers, num_battlefields) :
         yield strategy
 
-    
-    
+        
 def respond(player_strategy, enemy_strategy):
     altMove = best_response_one_day(enemy_strategy, numSoldiers(player_strategy)-1)
     curScore = run_blotto_game(player_strategy, enemy_strategy)
@@ -124,5 +131,4 @@ def levelkResponse(player_strategy, enemy_strategy, k):
 #True or false?
 #Idea: number of troops left at end counts towards utility? Either a significant amount or just as a tiebreaker
 #becomes more similar to an auction when arbitrary number of people in war
-    
-    
+
