@@ -15,6 +15,19 @@ def test_best_response_one_day():
         print("Failed [big, big, small, big, big] case.")
     else 
         print("Passed")
+        
+            
+    
+    print("In this case, level 0 switches but level 1 does not:")
+    print(levelkResponse([1,8,8,1], [1,2,3,10], 0))
+    print(levelkResponse([1,8,8,1], [1,2,3,10], 1))
+    
+    print("In this case, level 0 switches, level 1 switches to something else:")
+    print(levelkResponse([1,8,8,2], [1,2,3,10], 0))
+    print(levelkResponse([1,8,8,2], [1,2,3,10], 1))
+    
+    
+        
     return True;
 
 
