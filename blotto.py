@@ -92,7 +92,6 @@ def respond(player_strategy, enemy_strategy):
     else:
         return player_strategy
     
-  
 
 #very brute force level k response, currently only works for 4 battlefields
 def levelkResponse(player_strategy, enemy_strategy, k):
@@ -102,19 +101,22 @@ def levelkResponse(player_strategy, enemy_strategy, k):
         n = numSoldiers(player_strategy)-1
         bestStrat = player_strategy
         bestScore = run_blotto_game(bestStrat, respond(enemy_strategy, bestStrat))
-        for i in range(0, n+1):
-            for j in range(0, n+1-i):
-                for l in range(0, n+1-i-j):
-                    strat = [i, j, l, n-i-j-l]
-                    score = run_blotto_game(strat, respond(enemy_strategy, strat))
-                    if (score[0] - score[2] > bestScore[0] - bestScore[2]):
-                        bestStrat = strat
-                        bestScore = score
+        for strat in enumerate_strategies1(n, len(player_strategy), [],[]):
+            score = run_blotto_game(strat, respond(enemy_strategy, strat))
+            if (score[0] - score[2] > bestScore[0] - bestScore[2]):
+                bestStrat = strat
+                bestScore = score
         return bestStrat
-    #need better way to do this without brute force    
-    #maybe start with total brute force and then try to notice a pattern?
     if (k > 1):
-        return respond(player_strategy, levelkResponse(enemy_strategy, player_strategy, k-1))
+        n = numSoldiers(player_strategy)-1
+        bestStrat = player_strategy
+        bestScore = run_blotto_game(bestStrat, levelkResponse(enemy_strategy, bestStrat, k-1))
+        for strat in enumerate_strategies1(n, len(player_strategy), [],[]):
+            enemy_strat = levelkResponse(enemy_strategy, strat, k-1)
+            score = run_blotto_game(strat, enemy_strat)
+            if (score[0] - score[2] > bestScore[0] - bestScore[2]):
+                bestStrat = strat
+                bestScore = score
     
 #Question: can you ever have a scenario where, when the curtain is lifted, both players would like to move first?
 #i.e. the loser would like to mitigate their losses and the winner would like to pre-empt that?

@@ -5,7 +5,7 @@ Created on Sat Apr 15 18:33:04 2017
 @author: Dylan
 """
 
-from blotto import best_response_one_day, enumerate_strategies1
+from blotto import best_response_one_day, enumerate_strategies1, levelkResponse
 import pdb
 
 def test_best_response_one_day():
@@ -27,6 +27,13 @@ def test_best_response_one_day():
     print(levelkResponse([1,8,8,2], [1,2,3,10], 0))
     print(levelkResponse([1,8,8,2], [1,2,3,10], 1))
     
+def test_levelkResponse():
+    print("In this case, level 0 switches but level 1 does not:")
+    print(levelkResponse([1,8,8,1], [1,2,3,10], 0))
+    print(levelkResponse([1,8,8,1], [1,2,3,10], 3))
+    print(levelkResponse([1,8,8,2], [1,2,3,10], 0))
+    print(levelkResponse([1,8,8,2], [1,2,3,10], 3))
+    
 def test_enumerate_strategies():
     print("Testing enumeration of 10 soldiers on four battlefields")
     
@@ -47,4 +54,5 @@ def test_enumerate_strategies():
 if __name__ == "__main__":
     test_enumerate_strategies()
     test_best_response_one_day();
-    
+    print("----------\n")
+    test_levelkResponse()
