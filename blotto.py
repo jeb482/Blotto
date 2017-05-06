@@ -3,6 +3,9 @@
 # Basic data structures for the blotto game
 #
 
+
+import pdb
+
 # Returns the tuple of (wins, draws, losses) for strategy_a.
 def run_blotto_game(strategy_a, strategy_b):
     num_battlefields = len(strategy_a)
@@ -50,6 +53,43 @@ def numSoldiers(strategy):
         n += strategy[i]
     return n
 
+
+def best_response_with_discount(player_strategy, enemy_strategy):
+    if (get_winner(player_strategy, enemy_strategy) == player_strategy):
+        return player_strategy
+    return best_response_one_day(enemy_strategy, sum(player_strategy) - 1)
+    
+    
+    
+def numSoldiers(strategy):
+    return sum(strategy)
+
+    
+def enumerate_strategies1(num_soldiers, num_battlefields, strategy, l):
+    if (num_soldiers == 0):
+        l.append(strategy + num_battlefields*[0])
+        return l
+    if (num_battlefields == 1):
+        l.append(strategy + [num_soldiers])
+        return l
+    for i in range(0, num_soldiers + 1):
+        enumerate_strategies1(num_soldiers - i, num_battlefields - 1, strategy + [i], l)
+    return l
+    
+def enumerate_strategies(num_soldiers, num_battlefields):
+    def recursiveHelper(soldiers, battlefields):
+        if (soldiers == 0):
+            yield [0]*battlefields
+        if (battlefields == 1):
+            yield [soldiers]
+        for i in range(soldiers+1):
+            for substrat in recursiveHelper(soldiers - i   , battlefields-1):
+                yield [i] + substrat
+    import pdb; pdb.set_trace()    
+    for strategy in recursiveHelper(num_soldiers, num_battlefields) :
+        yield strategy
+
+        
 def respond(player_strategy, enemy_strategy):
     altMove = best_response_one_day(enemy_strategy, numSoldiers(player_strategy)-1)
     curScore = run_blotto_game(player_strategy, enemy_strategy)
@@ -89,4 +129,4 @@ def levelkResponse(player_strategy, enemy_strategy, k):
 #True or false?
 #Idea: number of troops left at end counts towards utility? Either a significant amount or just as a tiebreaker
 #becomes more similar to an auction when arbitrary number of people in war
-    
+
