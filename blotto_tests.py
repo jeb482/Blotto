@@ -14,8 +14,6 @@ def test_best_response_one_day():
     
     if ([0,0,1,0,0] != best_response_one_day([1000,1000,999,1000,1000], 1)):
         print("Failed [big, big, small, big, big] case.")
-    print("Passed")
-    
     else: 
         print("Passed")
         
@@ -30,11 +28,22 @@ def test_best_response_one_day():
     print(levelkResponse([1,8,8,2], [1,2,3,10], 1))
     
 def test_levelkResponse():
-    print("In this case, level 0 switches but level 1 does not:")
-    print(levelkResponse([1,8,8,1], [1,2,3,10], 0))
-    print(levelkResponse([1,8,8,1], [1,2,3,10], 3))
-    print(levelkResponse([1,8,8,2], [1,2,3,10], 0))
-    print(levelkResponse([1,8,8,2], [1,2,3,10], 3))
+    print("Testing level k response:")
+    print("Player 1 Level 0")
+    print(levelkResponse([6,0,0],[2,2,1], 0))
+    print("Level 4")
+    print(levelkResponse([6,0,0],[2,2,1], 4))
+    print("Level 5")
+    print(levelkResponse([6,0,0],[2,2,1], 5))
+    
+    
+    print("Player 2 Level 0")
+    print(levelkResponse([2,2,1], [6,0,0], 0))
+    print("Level 4")
+    print(levelkResponse([2,2,1], [6,0,0], 4))
+    print("Level 5")
+    print(levelkResponse([2,2,1], [6,0,0], 5))
+    
     
     return True;
 
@@ -43,7 +52,7 @@ def test_enumerate_strategies():
     
     l = enumerate_strategies1(10,4,[],[])
     fail = False
-    print [sum(s) for s in l]
+    print([sum(s) for s in l])
     #for (s in l):
     #    if sum(s) != 10:
     #        fail = True;
@@ -55,7 +64,7 @@ def test_enumerate_strategies():
     
 
 if __name__ == "__main__":
-    test_enumerate_strategies()
-    test_best_response_one_day();
+#    test_enumerate_strategies()
+#    test_best_response_one_day();
     print("----------\n")
     test_levelkResponse()

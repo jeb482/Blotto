@@ -11,6 +11,10 @@ def run_blotto_game(strategy_a, strategy_b):
     num_battlefields = len(strategy_a)
     wins = 0; draws = 0; losses = 0
     for i in range(num_battlefields):
+        if (strategy_b == None):
+            print("strategy a ", strategy_a)
+            print("strategy b ", strategy_b)
+        
         if (strategy_a[i] > strategy_b[i]):
             wins += 1
         elif (strategy_a[i] == strategy_b[i]):
@@ -124,6 +128,7 @@ def levelkResponse(player_strategy, enemy_strategy, k):
             if (score[0] - score[2] > bestScore[0] - bestScore[2]):
                 bestStrat = strat
                 bestScore = score
+        return bestStrat
     
 #Question: can you ever have a scenario where, when the curtain is lifted, both players would like to move first?
 #i.e. the loser would like to mitigate their losses and the winner would like to pre-empt that?
