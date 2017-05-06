@@ -5,7 +5,8 @@ Created on Sat Apr 15 18:33:04 2017
 @author: Dylan
 """
 
-from blotto import best_response_one_day
+from blotto import best_response_one_day, enumerate_strategies1
+import pdb
 
 def test_best_response_one_day():
     if ([3,1,2] != best_response_one_day([2,3,1])):
@@ -13,7 +14,7 @@ def test_best_response_one_day():
     
     if ([0,0,1,0,0] != best_response_one_day([1000,1000,999,1000,1000], 1)):
         print("Failed [big, big, small, big, big] case.")
-    else 
+    else: 
         print("Passed")
         
             
@@ -26,10 +27,24 @@ def test_best_response_one_day():
     print(levelkResponse([1,8,8,2], [1,2,3,10], 0))
     print(levelkResponse([1,8,8,2], [1,2,3,10], 1))
     
+def test_enumerate_strategies():
+    print("Testing enumeration of 10 soldiers on four battlefields")
     
-        
-    return True;
+    l = enumerate_strategies1(10,4,[],[])
+    fail = False
+    print [sum(s) for s in l]
+    #for (s in l):
+    #    if sum(s) != 10:
+    #        fail = True;
+            
+    #if (!fail):
+    ##   print('Right number of soldiers')
+    if (len(enumerate_strategies1(10,4,[],[])) == (13*12*11)/(3*2)):
+        print("Right number")
+    
 
 
 if __name__ == "__main__":
+    test_enumerate_strategies()
     test_best_response_one_day();
+    
